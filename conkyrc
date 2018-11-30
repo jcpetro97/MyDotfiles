@@ -1,0 +1,114 @@
+conky.config = {
+	alignment = 'top_middle',
+
+	background = true,
+
+	cpu_avg_samples = 2,
+	net_avg_samples = 2,
+	update_interval = 1,
+
+	default_color = 'grey',
+	default_outline_color = 'grey',
+	default_shade_color = 'grey',
+
+	draw_borders = false,
+	draw_shades = false,
+
+	border_margin = '10',
+	border_width = 2,
+
+	gap_x = 120,
+	gap_y = 40,
+
+	maximum_width = 264,
+
+	use_xft = true,
+
+	font = 'Sans:size=8',
+	xftalpha = 1,
+	own_window = true,
+	own_window_argb_visual = true,
+	own_window_argb_value = 105,
+	own_window_type = 'normal',
+	own_window_hints = 'undecorated,skip_taskbar,skip_pager,sticky',
+
+	use_spacer = 'right',
+	double_buffer = true,
+	no_buffers = true,
+
+
+};
+
+conky.text = [[
+${font Arial:bold:size=10}${color Tan1}SYSTEM ${color DarkSlateGray} ${hr 2}
+
+${color grey}${font Arial:bold:size=10}${exec whoami}  ${alignr}${nodename}
+${color grey}${font Arial:bold:size=10}${time %I:%M:%S:%p} ${alignr}${time %a %d %b}
+${color grey}Kernel: ${alignr}${kernel}
+${color grey}Uptime: ${alignr}$uptime_short
+${color grey}Load: ${alignr}$loadavg 
+
+${font Arial:bold:size=10}${color Tan1}PROCESSORS ${color DarkSlateGray}${hr 2}
+${color grey}${font Arial:bold:size=10}
+${color grey}cpu1: ${cpu cpu1}%	${cpubar cpu1}
+${color grey}cpu2: ${cpu cpu2}%	${cpubar cpu2}
+${color grey}cpu3: ${cpu cpu3}%	${cpubar cpu3}
+${color grey}cpu4: ${cpu cpu4}%	${cpubar cpu4}
+${color grey}cpu5: ${cpu cpu5}%	${cpubar cpu5}
+${color grey}cpu6: ${cpu cpu6}%	${cpubar cpu6}
+${color grey}cpu7: ${cpu cpu7}%	${cpubar cpu7}
+${color grey}cpu8: ${cpu cpu8}%	${cpubar cpu8}
+${color grey}Total cpu: ${cpu cpu0}%	${cpubar cpu0}
+
+${font Arial:bold:size=10}${color Tan1}MEMORY ${color DarkSlateGray}${hr 2}
+${font Arial:bold:size=10}
+${color grey}ram : $mem/$memmax ${alignr}$memperc%
+${color #0077ff}$membar
+${color grey}swap: $swap/$swapmax ${alignr}$swapperc%
+${color #0077ff}$swapbar
+
+${font Arial:bold:size=10}${color Tan1}NETWORK ${color DarkSlateGray}${hr 2}
+${font Arial:bold:size=10}
+${color grey}eno10: ${addr eno1}
+${color grey}DOWN: ${color #CCCCCC}${downspeed eno1} ${alignr}${color grey}UP: ${upspeed eno1}
+${color grey}${downspeedgraph eno1 20,100 ff0000 0000ff} ${alignr}${color grey}${upspeedgraph eno1 20,100 0000ff ff0000}
+${color grey}TOTAL: ${totaldown eno1} ${alignr}${color grey}TOTAL: ${totalup eno1}
+
+${font Arial:bold:size=10}${color Tan1}INTERNAL STORAGE ${color DarkSlateGray}${hr 2}
+${font Arial:bold:size=8}
+${color #FFFF00}root : ${color white}${fs_used /}/${fs_size /} (${fs_free /} free)
+${color #FFFF00}${fs_bar /}
+
+${font Arial:bold:size=10}${color Tan1}EXTERNAL STORAGE ${color DarkSlateGray}${hr 2}
+${font Arial:bold:size=8}
+${if_mounted /rit}${color #00FF00}rit : ${color white}${fs_used /rit}/${fs_size /rit} (${fs_free /rit} free)
+${color #00FF00}${fs_bar /rit}${else}${color red}rit Not Mounted ${endif}
+#
+##external "MUSIC" drive
+${if_mounted /media/jxpsys/Music}${color #00FF00}Music : ${color white}${fs_used /media/jxpsys/Music}/${fs_size /media/jxpsys/Music} (${fs_free /media/jxpsys/Music} free)
+${color #00FF00}${fs_bar /media/jxpsys/Music}${else}${color red}Music Not Mounted
+${endif}
+#
+## external backup drive
+${if_mounted /jpbackup}${color #00FF00}jpbackup : ${color white}${fs_used /jpbackup}/${fs_size /jpbackup} (${fs_free /jpbackup} free)
+${color #00FF00}${fs_bar /jpbackup}${else}${color red}jpbackup Not Mounted
+${endif}
+#
+${if_mounted /mnt}${color #00FF00}mnt : ${color white}${fs_used /mnt}/${fs_size /mnt} (${fs_free /mnt} free)
+${color #00FF00}${fs_bar /mnt}${else}${color red}mnt Not Mounted
+${endif}
+#
+${font Arial:bold:size=10}${color Tan1}TOP CPU ${color DarkSlateGray}${hr 2}
+${font Arial:bold:size=8}
+${color grey}Name ${alignr}PID ${alignr}CPU%
+${color #ddaa00} ${top name 1} ${alignr}${top pid 1} ${alignr}${top cpu 1}
+${color grey} ${top name 2} ${alignr}${top pid 2} ${alignr}${top cpu 2}
+${color grey} ${top name 3} ${alignr}${top pid 3} ${alignr}${top cpu 3}
+
+${font Arial:bold:size=10}${color Tan1}TOP MEM ${color DarkSlateGray}${hr 2}
+${font Arial:bold:size=8}
+${color grey}Name ${alignr}PID        ${alignr}MEM  
+${color #ddaa00}${top_mem name 1}	${alignr}${top_mem pid 1}	${alignr}${top_mem mem_res 1}
+${color grey} ${top_mem name 2}	${alignr}${top_mem pid 2}	${alignr}${top_mem mem_res 2}
+${color grey} ${top_mem name 3}	${alignr}${top_mem pid 3}	${alignr}${top_mem mem_res 3}
+]];

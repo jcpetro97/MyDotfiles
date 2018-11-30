@@ -1,0 +1,15 @@
+tmux has-session -t mystuff
+if [ $? != 0 ]
+then
+   # initialize session
+   tmux new-session -s mystuff -n glances -d
+   tmux new-window -n mtail -t mystuff
+   tmux new-window -n mail -t mystuff
+   tmux split-window -v -p 10 -t mystuff:3
+   # run commands  tmux send-keys -t session:window or session:window.panel
+   tmux send-keys -t mystuff:1 'glances' C-m
+   tmux send-keys -t mystuff:2 'mtail' C-m
+   tmux send-keys -t mystuff:3.1 'alpine' C-m
+   tmux send-keys -t mystuff:3.2 'export KRB5CCNAME=/tmp/krb5cc_56827_SCARD ; scard ; bin/parse.pl' 
+fi
+#tmux attach -t mystuff
