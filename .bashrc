@@ -266,6 +266,8 @@ alias rhel1='ssh 0 -l john -p 2204'
 alias rhel2='ssh 0 -l john -p 2205'
 alias nxstatus='sudo systemctl status nxserver'
 alias nxrestart='sudo systemctl restart nxserver'
+alias push='git push origin master'
+alias github='git push github master'
 #   ---------------------------------------
 #   8.  todo.txt
 #   ---------------------------------------
