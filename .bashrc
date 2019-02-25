@@ -288,3 +288,8 @@ fi
 #   9.  REMINDERS & NOTES
 #   ---------------------------------------
 
+
+#   ---------------------------------------
+#   multitail alias
+#   ---------------------------------------
+alias mtail='multitail --follow-all -cS syslog /var/log/messages -cS fail2ban /var/log/fail2ban.log -cS vtsudo /var/tmp/sudo -cS vtssh /var/tmp/ssh  -cS backup /var/log/rsnapshot/rsnapshot-tardis.log'
