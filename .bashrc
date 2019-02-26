@@ -289,7 +289,11 @@ fi
 #   ---------------------------------------
 
 
-#   ---------------------------------------
-#   multitail alias
-#   ---------------------------------------
-alias mtail='multitail --follow-all -cS syslog /var/log/messages -cS fail2ban /var/log/fail2ban.log -cS vtsudo /var/tmp/sudo -cS vtssh /var/tmp/ssh  -cS backup /var/log/rsnapshot/rsnapshot-tardis.log'
+#   ----------------------------------------------------
+#   multitail alias - RIT  uncomment if this is for RIT
+#   ----------------------------------------------------
+#alias mtail='multitail --follow-all -cS syslog /var/log/messages -cS fail2ban /var/log/fail2ban.log -cS vtsudo /var/tmp/sudo -cS vtssh /var/tmp/ssh  -cS backup /var/log/rsnapshot/rsnapshot-tardis.log'
+#   --------------------------------------------------------------
+#   multitail alias - uncomment if you are not on a RIT computer.
+#   --------------------------------------------------------------
+#alias mtail='multitail --follow-all -cS syslog /var/log/messages -cS fail2ban /var/log/fail2ban.log -cS sudo /var/tmp/sudo'
