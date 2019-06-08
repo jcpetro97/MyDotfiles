@@ -26,23 +26,15 @@ USER=`id -u -n`
 if [ "$PS1" ]; then
         set history=1500
         #stty erase ^H
-        stty erase ^?
+        #stty erase ^?
         ###3setterm -blength 0
         unset autologout
         set colorcat
         set autolist
-        # original prompt
-        ###export PS1="\h{\u}\! \w: "
-        # uncomment if using for the root user
-        #export PS1="\h\[\e[0;31m\]{\u}\[\e[m\]\! \w: "
-        # comment out if using for the root user
-        #export PS1="\h\[\e[0;32m\]{\u}\[\e[m\]\! \w: "
         if [ $USER = "root" ]; then
-        # uncomment if using for the root user
 	export PS1="\[\e[1;31m\]\h\[\e[0;32m\]{\u}\[\e[m\]\! \w: "
 
         else
-        # comment out if using for the root user
 	export PS1="\[\e[1;33m\]\h\[\e[0;32m\]{\u}\[\e[m\]\! \w: "
 
 	fi
