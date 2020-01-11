@@ -19,6 +19,9 @@ set -s escape-time 1
 set -g base-index 1
 setw -g pane-base-index 1
 
+# Automatically re-number windows
+set-option -g renumber-windows on
+
 #shortcut to reload the config file
 bind r source-file ~/.tmux.conf \; display "Reloaded!"
 
