@@ -10,8 +10,7 @@
 #  5.   Process Management
 #  6.   Networking
 #  7.   System Operations & Information
-#  8.   Todo.txt
-#  9.   Reminders & Notes
+#  8.   Reminders & Notes
 #
 #  ---------------------------------------------------------------------------
 
@@ -23,7 +22,7 @@
 # silence the The default interactive shell is now zsh. warning"
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
-
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
 #   Change Prompt
 #   ------------------------------------------------------------
@@ -44,9 +43,9 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
     export USER="jxpsys"
     export PATH="$PATH:/usr/local/bin/"
     export PATH="/usr/local/git/bin:/usr/local/opt/krb5/bin:/sw/bin/:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
-    export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/2.7/sbin:$PATH"
-    ###export PATH="/usr/local/git/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
-
+    export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/2.7/sbin:/Users/jxpsys/bin:$PATH"
+    export PATH="/usr/local/opt/krb5/bin:$PATH"
+    export PATH="/usr/local/opt/krb5/sbin:$PATH"
 #   Set Default Editor (change 'Nano' to the editor of your choice)
 #   ------------------------------------------------------------
     export EDITOR=/usr/bin/vim
@@ -103,9 +102,18 @@ alias main='kinit -f -c /tmp/krb5cc_56827 jxpsys@MAIN.AD.RIT.EDU'
 alias ki='kinit -f -c /tmp/krb5cc_56827 jxpsys@RIT.EDU'
 alias kl='klist -c /tmp/krb5cc_56827 ; echo ; klist -c /tmp/krb5cc_56827_OATH ; echo ; klist -c /tmp/krb5cc_56827_SCARDTEST ; klist -c /tmp/krb5cc_56827_MAIN'
 alias oath='kinit -f -c /tmp/krb5cc_56827_OATH jxpsys@OATH.RIT.EDU'
+alias krboath='export KRB5CCNAME=/tmp/krb5cc_56827_OATH'
 alias scard='kinit -f -c /tmp/krb5cc_56827_SCARDTEST jxpsys@SCARDTEST.RIT.EDU'
-
-
+alias myrepo='cd ~/dvl/Personal/Ansible/MyRepo'
+alias myansible='cd ~/dvl/Personal/Ansible/'
+alias vault='cd ~/dvl/Personal/Ansible/MyRepo/vault'
+alias vf='cd ~/dvl/Personal/Vagrant/VagrantFiles'
+alias dvl='cd ~/dvl'
+alias personal='cd ~/dvl/Personal'
+alias ubuntu2004='cd ~/dvl/ServerAutomation/Packer/LinuxSubteam/Ubuntu2004'
+alias rhel7='cd ~/dvl/ServerAutomation/Packer/LinuxSubteam/RHEL7'
+alias subteam='cd ~/dvl/ServerAutomation/Packer/LinuxSubteam'
+alias glog="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'"
 #
 #   colorize ls and grep
 
@@ -238,8 +246,8 @@ ffe () { /usr/bin/find . -name '*'"$@" ; }  # ffe:      Find file whose name end
 #   ---------------------------
 #   6.  NETWORKING
 #   ---------------------------
-
 alias myip='curl ip.appspot.com'                    # myip:         Public facing IP Address
+alias testip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias netCons='lsof -i'                             # netCons:      Show all open TCP/IP sockets
 alias flushDNS='dscacheutil -flushcache'            # flushDNS:     Flush out the DNS Cache
 alias lsock='sudo /usr/sbin/lsof -i -P'             # lsock:        Display open sockets
@@ -280,7 +288,7 @@ alias mountReadWrite='/sbin/mount -uw /'    # mountReadWrite:   For use when boo
 #   -------------------------------------------------------------------
     alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
     alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
-
+    alias smerge='/Applications/Sublime Merge.app/Contents/MacOS/sublime_merge'
 #   cleanupLS:  Clean up LaunchServices to remove duplicates in the "Open With" menu
 #   -----------------------------------------------------------------------------------
     alias cleanupLS="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
@@ -289,24 +297,13 @@ alias mountReadWrite='/sbin/mount -uw /'    # mountReadWrite:   For use when boo
 #   -----------------------------------------------------------------------------------
     alias screensaverDesktop='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine -background'
 
-#   ---------------------------------------
-#   8.  todo.txt
-#   ---------------------------------------
-export TODOTXT_CFG_FILE="/Users/${USER}/Dropbox/todotxt/todo.cfg"
-export TODOTXT_DEFAULT_ACTION=ls
-export TODO_FILE="/Users/${USER}/Dropbox/todotxt/todo.txt"
-export DONE_FILE="/Users/${USER}/Dropbox/todotxt/done.txt"
-export REPORT_FILE="/Users/${USER}/Dropbox/todotxt/report.txt"
-alias todo='/Users/${USER}/todo/bin/todo.sh '
-
-
 #   httpDebug:  Download a web page and show info on what took time
 #   -------------------------------------------------------------------
     httpDebug () { /usr/bin/curl $@ -o /dev/null -w "dns: %{time_namelookup} connect: %{time_connect} pretransfer: %{time_pretransfer} starttransfer: %{time_starttransfer} total: %{time_total}\n" ; }
 
 
 #   ---------------------------------------
-#   9.  REMINDERS & NOTES
+#   8.  REMINDERS & NOTES
 #   ---------------------------------------
 
 #   remove_disk: spin down unneeded disk
@@ -334,9 +331,3 @@ alias todo='/Users/${USER}/todo/bin/todo.sh '
 #   e.g.: hdiutil create -size 10m 10MB.dmg
 #   the above create files that are almost all zeros - if random bytes are desired
 #   then use: ~/Dev/Perl/randBytes 1048576 > 10MB.dat
-
-PATH="/Users/jxpsys/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/Users/jxpsys/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/Users/jxpsys/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/Users/jxpsys/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/Users/jxpsys/perl5"; export PERL_MM_OPT;
