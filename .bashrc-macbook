@@ -353,5 +353,6 @@ PERL_MM_OPT="INSTALL_BASE=/Users/jxpsys/perl5"; export PERL_MM_OPT;
 #
 #
 ###alias yubinit='eval `/usr/bin/ssh-agent -s  -P /usr/local/lib/*,/usr/local/Cellar/yubico-piv-tool/*/lib/*.dylib`;ssh-add -s /usr/local/lib/libykcs11.dylib'
+alias yubinit='eval export SSH_AUTH_SOCK=/Users/jxpsys/smartcard/ssh.auth ; ssh-agent -t4h -a /Users/jxpsys/smartcard/ssh.auth ;ssh-add -s /usr/local/lib/opensc-pkcs11.so'
 alias ritsc='export SSH_AUTH_SOCK=/Users/jxpsys/smartcard/ssh.auth ; eval `/Users/jxpsys/smartcard/ritsc-mac.pl`'
 alias homesc='export SSH_AUTH_SOCK=/Users/jxpsys/smartcard/ssh.auth ; eval `/Users/jxpsys/smartcard/homesc-mac.pl`'
