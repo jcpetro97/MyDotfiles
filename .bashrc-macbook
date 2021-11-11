@@ -354,11 +354,8 @@ PERL_MM_OPT="INSTALL_BASE=/Users/jxpsys/perl5"; export PERL_MM_OPT;
 #
 ###alias yubinit='eval `/usr/bin/ssh-agent -s  -P /usr/local/lib/*,/usr/local/Cellar/yubico-piv-tool/*/lib/*.dylib`;ssh-add -s /usr/local/lib/libykcs11.dylib'
 export DISPLAY=""
-export SSH_AUTH_SOCK=/Users/jxpsys/smartcard/ssh.auth
 export SSH_ASKPASS=/usr/local/bin/ssh-askpass
-alias yubinit='eval ssh-agent -t4h -a /Users/jxpsys/smartcard/ssh.auth ;ssh-add -s /usr/local/lib/opensc-pkcs11.so'
-#alias ritsc='eval `/Users/jxpsys/smartcard/ritsc-mac.pl`'
-alias ritsc='eval `ssh-agent -t4h -a /Users/jxpsys/smartcard/ssh.auth ; echo | ssh-add -c -s /usr/local/lib/opensc-pkcs11.so`'
-alias homesc='eval `ssh-agent -t4h -a /Users/jxpsys/smartcard/ssh.auth; echo | ssh-add -s /usr/local/lib/opensc-pkcs11.so`'
-#alias homesc='eval `/Users/jxpsys/smartcard/homesc-mac.pl`'
-alias cleansc='kill -9 $(pgrep ssh-agent) >& /dev/null; rm /Users/jxpsys/smartcard/ssh.auth'
+alias ritsc='export SSH_AUTH_SOCK=~/smartcard/ssh.auth ; eval ssh-agent -t4h -a ~/smartcard/ssh.auth ; echo | ssh-add -c -s /usr/local/lib/opensc-pkcs11.so'
+alias homesc='export SSH_AUTH_SOCK=~/smartcard/ssh.auth ; eval ssh-agent -t4h -a ~/smartcard/ssh.auth; echo | ssh-add -s /usr/local/lib/opensc-pkcs11.so'
+alias yk='export SSH_AUTH_SOCK=~/smartcard/ssh.auth'
+alias cleansc='kill -9 $(pgrep ssh-agent) >& /dev/null; rm ~/smartcard/ssh.auth'
