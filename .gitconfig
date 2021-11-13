@@ -1,0 +1,17 @@
+[includeIf "gitdir:~/dvl/Personal/"]
+  path = ~/.gitconfig-personal
+ 
+[includeIf "gitdir:~/dvl/RIT/"]
+    path = ~/.gitconfig-rit
+[color]
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+[init]
+  defaultBranch = main
+[alias]
+	lo = log --oneline
+  gl = "log --graph --abbrev-commit --pretty=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an <%aE>%C(reset)%C(auto)%d%C(reset)'"
+	last = log -1 HEAD
+	unstage = "reset -- "
