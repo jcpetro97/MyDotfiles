@@ -261,7 +261,7 @@ fi
 # Include alias file (if present) containing aliases for ssh, etc.
 if [ -d "$HOME/.aliases/" ]; then
     for file in $HOME/.aliases/bash_aliases_*; do
-        echo "loading aliases file: $file"
+        #echo "loading aliases file: $file"
         . "$file"
     done
 fi
