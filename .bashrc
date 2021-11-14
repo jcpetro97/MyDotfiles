@@ -223,6 +223,27 @@ alias f2b='route -n'
 
 #   7.  SYSTEMS OPERATIONS & INFORMATION
 
+# Delete a given line number in the known_hosts file.
+knownrm() {
+ re='^[0-9]+$'
+ if ! [[ $1 =~ $re ]] ; then
+   echo "error: line number missing" >&2;
+ else
+   sed -i '' "$1d" ~/.ssh/known_hosts
+ fi
+}
+
+# Enter a running Docker container.
+denter() {
+ if [[ ! "$1" ]] ; then
+     echo "You must supply a container ID or name."
+     return 0
+ fi
+
+ docker exec -it $1 bash
+ return 0
+}
+
 alias tmattach='tmux attach -d -t '
 alias tmcreate='tmux new -s '
 alias tmlist='tmux ls'
@@ -234,8 +255,9 @@ if [ -f .tmux.startup ]; then
    ~/.tmux.startup
 fi
 
-if [ -d "$HOME/.bash_aliases.d/" ]; then
-    for file in $HOME/.bash_aliases.d/bash_aliases_*; do
+# Include alias file (if present) containing aliases for ssh, etc.
+if [ -d "$HOME/.aliases/" ]; then
+    for file in $HOME/.aliases/bash_aliases_*; do
         echo "loading aliases file: $file"
         . "$file"
     done
