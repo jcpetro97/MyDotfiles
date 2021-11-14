@@ -1,3 +1,4 @@
+{{ ansible_managed | comment }}
 #  ---------------------------------------------------------------------------
 #
 #  Description:  This file holds all my BASH configurations and aliases
@@ -11,21 +12,19 @@
 #  6.   Networking
 #  7.   System Operations & Information
 #  8.   Reminders & Notes
-#
+#  9.   Work based Aliases
+#  10.  User Defined Aliases
+#  
 #  ---------------------------------------------------------------------------
 
-#   -------------------------------
 #   1.  ENVIRONMENT CONFIGURATION
-#   -------------------------------
 
 #   Change Prompt
 #   ------------------------------------------------------------
 USER=`id -u -n`
 if [ "$PS1" ]; then
         set history=1500
-        #stty erase ^H
-        #stty erase ^?
-        ###3setterm -blength 0
+        stty erase ^?
         unset autologout
         set colorcat
         set autolist
@@ -56,9 +55,8 @@ HISTFILESIZE=2000
     export EDITOR=/usr/bin/vim
 #   source the bash completion script: /etc/bash_completion for more functionality
     . /etc/bash_completion
-#   -----------------------------
+
 #   2.  MAKE TERMINAL BETTER
-#   -----------------------------
 
         case "$TERM" in
             xterm-color) color_prompt=yes;;
@@ -99,24 +97,13 @@ alias fix_stty='stty sane'                  # fix_stty:     Restore terminal set
 alias pss='ps -ef | grep -v grep | grep --color=auto '
 alias ns='nslookup '
 alias top='/usr/bin/htop'
-alias mtail='/home/${USER}/bin/mtail'
-alias oath='kinit -c /tmp/krb5cc_56827_OATH -f jxpsys@OATH.RIT.EDU ; export KRB5CCNAME=/tmp/krb5cc_56827_OATH'
-alias scard='kinit -c /tmp/krb5cc_56827_SCARD -f jxpsys@SCARD.RIT.EDU ; export KRB5CCNAME=/tmp/krb5cc_56827_SCARD'
-alias main='kinit -c /tmp/krb5cc_56827_MAIN -f jxpsys@MAIN.AD.RIT.EDU ; export KRB5CCNAME=/tmp/krb5cc_56827_MAIN'
-alias kl='klist -c /tmp/krb5cc_56827 ; echo ; klist -c /tmp/krb5cc_56827_OATH ; echo ; klist -c /tmp/krb5cc_56827_SCARD ; echo ; klist -c /tmp/krb5cc_56827_MAIN'
-alias krbenv='echo $KRB5CCNAME'
-alias krboath='export KRB5CCNAME=/tmp/krb5cc_56827_OATH'
-alias krbscard='export KRB5CCNAME=/tmp/krb5cc_56827_SCARD'
-alias krbmain='export KRB5CCNAME=/tmp/krb5cc_56827_MAIN'
-alias synergy='/usr/bin/synergys -f --config /etc/synergy.conf'
-alias keepass='/usr/bin/mono /home/${USER}/bin/keepass2/KeePass.exe'
 alias dirsize='du -hs * .[^.]* | sort -hr'
 alias dirsizen='du -hs * .[^.]* | sort -h'
 alias disk='lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL'
 alias disks='lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL'
 alias xscreensaver='xscreensaver -no-splash -log /var/tmp/xscreensaver.log'
 alias go='~/.screenlayout/screenlayout.sh'
-alias simpana='/usr/bin/javaws ~/bin/galaxy.jnlp'
+alias dvl='cd ~/dvl'
 #   lr:  Full Recursive Directory Listing
 #   ------------------------------------------
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
@@ -128,9 +115,7 @@ alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\
         man $1 | grep -iC2 --color=always $2 | less
     }
 
-#   -------------------------------
 #   3.  FILE AND FOLDER MANAGEMENT
-#   -------------------------------
 
 zipf () { zip -r "$1".zip "$1" ; }          # zipf:         To create a ZIP archive of a folder
 alias numFiles='echo $(ls -1 | wc -l)'      # numFiles:     Count of non-hidden files in current dir
@@ -163,18 +148,14 @@ alias vi='/usr/bin/vim'			    # using vim instead of vi
     }
 
 
-#   ---------------------------
 #   4.  SEARCHING
-#   ---------------------------
 
 alias qfind="find . -name "                 # qfind:    Quickly search for file
 ff () { /usr/bin/find . -name "$@" ; }      # ff:       Find file under the current directory
 ffs () { /usr/bin/find . -name "$@"'*' ; }  # ffs:      Find file whose name starts with a given string
 ffe () { /usr/bin/find . -name '*'"$@" ; }  # ffe:      Find file whose name ends with a given string
 
-#   ---------------------------
 #   5.  PROCESS MANAGEMENT
-#   ---------------------------
 
 #   findPid: find out the pid of a specified process
 #   -----------------------------------------------------
@@ -209,11 +190,9 @@ ffe () { /usr/bin/find . -name '*'"$@" ; }  # ffe:      Find file whose name end
     my_ps() { ps $@ -u $USER -o pid,%cpu,%mem,start,time,bsdtime,command ; }
 
 
-#   ---------------------------
 #   6.  NETWORKING
-#   ---------------------------
 
-alias myip='curl ip.appspot.com'                    # myip:         Public facing IP Address
+alias myip='dig +short myip.opendns.com @resolver1.opendns.com'	# myip:         Public facing IP Address
 alias netCons='lsof -i'                             # netCons:      Show all open TCP/IP sockets
 alias lsock='sudo /usr/bin/lsof -i -P'             # lsock:        Display open sockets
 alias lsockU='sudo /usr/bin/lsof -nP | grep UDP'   # lsockU:       Display only open UDP sockets
@@ -224,7 +203,7 @@ alias vnstatvm8='vnstat -i vmnet8'
 #
 ##fail2ban aliases
 alias f2bstat='sudo fail2ban-client status '
-alias f2bsshub='sudo fail2ban-client set sshd unbanip '
+alias f2bunban='sudo fail2ban-client set sshd unbanip '
 alias f2b='route -n'
 
 #   ii:  display useful host related informaton
@@ -242,36 +221,24 @@ alias f2b='route -n'
     }
 
 
-#   ---------------------------------------
 #   7.  SYSTEMS OPERATIONS & INFORMATION
-#   ---------------------------------------
+
 alias tmattach='tmux attach -d -t '
 alias tmcreate='tmux new -s '
 alias tmlist='tmux ls'
-alias rhel1='ssh 0 -l john -p 2204'
-alias rhel2='ssh 0 -l john -p 2205'
+alias tmnw='tmux new-window -d -n '
 alias nxstatus='sudo systemctl status nxserver'
 alias nxrestart='sudo systemctl restart nxserver'
-alias glog='git log --graph --abbrev-commit --decorate --format=format:'\''%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an <%aE>%C(reset)%C(auto)%d%C(reset)'\'''
-alias gitcjxp='git commit --author="John Petro <jxpsys@rit.edu>"'
-
 #
-####~/.tmux.startup
 if [ -f .tmux.startup ]; then
    ~/.tmux.startup
 fi
 
+if [ -d "$HOME/.bash_aliases.d/" ]; then
+    for file in $HOME/.bash_aliases.d/bash_aliases_*; do
+        echo "loading aliases file: $file"
+        . "$file"
+    done
+fi
 
-#   ---------------------------------------
 #   8.  REMINDERS & NOTES
-#   ---------------------------------------
-
-
-#   ----------------------------------------------------
-#   multitail alias - RIT  uncomment if this is for RIT
-#   ----------------------------------------------------
-#alias mtail='multitail --follow-all -cS syslog /var/log/messages -cS fail2ban /var/log/fail2ban.log -cS vtsudo /var/tmp/sudo -cS vtssh /var/tmp/ssh  -cS backup /var/log/rsnapshot/rsnapshot-tardis.log'
-#   --------------------------------------------------------------
-#   multitail alias - uncomment if you are not on a RIT computer.
-#   --------------------------------------------------------------
-alias mtail='multitail --follow-all -cS syslog /var/log/messages -cS fail2ban /var/log/fail2ban.log -cS sudo /var/tmp/sudo'

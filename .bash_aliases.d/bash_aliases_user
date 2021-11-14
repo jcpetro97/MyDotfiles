@@ -1,0 +1,2 @@
+alias wgdown='sudo wg-quick down '
+alias wgup='sudo wg-quick up '
