@@ -1,5 +1,0 @@
-export SSH_ASKPASS=/bin/ssh-askpass
-alias ritsc='export SSH_AUTH_SOCK=~/ssh.auth ; eval ssh-agent -t4h -a ~/ssh.auth ; echo | ssh-add -c -s /usr/lib/libykcs11.so'
-alias homesc='export SSH_AUTH_SOCK=~/ssh.auth ; eval ssh-agent -t4h -a ~/ssh.auth; echo | ssh-add -s /usr/lib/libykcs11.so'
-alias yk='export SSH_AUTH_SOCK=~/ssh.auth'
-alias cleansc='kill -9 $(pgrep ssh-agent) >& /dev/null; /bin/rm ~/ssh.auth'
