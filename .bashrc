@@ -57,7 +57,9 @@ HISTFILESIZE=2000
 #   ------------------------------------------------------------
     export EDITOR=/usr/bin/vim
 #   source the bash completion script: /etc/bash_completion for more functionality
-    . /etc/bash_completion
+    if [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
 
 #   2.  MAKE TERMINAL BETTER
 
