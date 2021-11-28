@@ -1,13 +1,7 @@
-[includeIf "gitdir:~/documentation/"]
-  path = ~/.gitconfig-personal
-
 [includeIf "gitdir:/home/jpetro/"]
   path = ~/.gitconfig-personal
 
 [includeIf "gitdir:~/dvl/Personal/"]
-  path = ~/.gitconfig-personal
-
-[includeIf "gitdir:~/dvl/Ansible/"]
   path = ~/.gitconfig-personal
 
 [includeIf "gitdir:~/dvl/RIT/"]
