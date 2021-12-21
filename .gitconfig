@@ -10,6 +10,9 @@
 [includeIf "gitdir:~/home/jxpsys/"]
     path = ~/.gitconfig-rit
 
+[includeIf "gitdir:~/Users/jxpsys/"]
+    path = ~/.gitconfig-rit
+
 [color]
   branch = auto
   diff = auto
