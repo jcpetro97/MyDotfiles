@@ -7,10 +7,7 @@
 [includeIf "gitdir:~/dvl/RIT/"]
     path = ~/.gitconfig-rit
 
-[includeIf "gitdir:~/home/jxpsys/"]
-    path = ~/.gitconfig-rit
-
-[includeIf "gitdir:~/Users/jxpsys/"]
+[includeIf "gitdir:/Users/jxpsys/"]
     path = ~/.gitconfig-rit
 
 [color]
