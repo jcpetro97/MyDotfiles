@@ -2,7 +2,7 @@
   path = ~/.gitconfig-personal
 
 [includeIf "gitdir:~/dvl/Personal/"]
-  path = ~/.gitconfig-personal
+    path = ~/.gitconfig-personal
 
 [includeIf "gitdir:~/dvl/RIT/"]
     path = ~/.gitconfig-rit
@@ -22,3 +22,4 @@
   gl = "log --graph --abbrev-commit --pretty=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an <%aE>%C(reset)%C(auto)%d%C(reset)'"
 	last = log -1 HEAD
 	unstage = "reset -- "
+  whoami = "! git var -l | grep '^GIT_.*_IDENT'"

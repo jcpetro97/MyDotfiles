@@ -41,7 +41,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 #   Set Paths
 #   ------------------------------------------------------------
     export USER="jxpsys"
-    export PATH="$PATH:/usr/local/bin/"
+    export PATH="/usr/local/bin/:$PATH"
     export PATH="/usr/local/git/bin:/usr/local/opt/krb5/bin:/sw/bin/:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
     export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/2.7/sbin:/Users/jxpsys/bin:$PATH"
     ###export PATH="/usr/local/git/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
