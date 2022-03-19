@@ -1,0 +1,41 @@
+#   ---------------------------------------
+#   Docker Registry aliases
+#   ---------------------------------------
+
+# --------------------------------------------------------
+# Functions
+# --------------------------------------------------------
+
+# Get the registry tags for a image in the repository
+function regtags() {
+   if [ $# -eq  0 ]
+   then
+     echo "SYNTAX: registrytags image_name"
+   else
+    curl -k -X GET  https://registry.johnpetro.xyz:5443/v2/$1/tags/list
+   fi
+}
+
+# Get the sha256 digest ID which is used for cleanup of an image repo.
+function regdigestid() {
+   if [ $# -lt  2 ]
+   then
+     echo "SYNTAX: regdigestid image_name tag"
+   else
+     curl -kv --silent -H "Accept: application/vnd.docker.distribution.manifest.v2+json" -X GET https://registry.johnpetro.xyz:5443/v2/$1/manifests/$2 2>&1 | grep docker-content-digest | awk '{print ($3)}' 
+   fi
+}
+
+function dockrestart() {
+   if [ $# -eq  0 ]
+   then
+     echo "SYNTAX: dockrestart container_name"
+   else
+     docker restart $1
+}
+# --------------------------------------------------------
+# aliases
+# --------------------------------------------------------
+
+alias regls='curl -k https://registry.johnpetro.xyz:5443/v2/_catalog'
+alias dockgar='docker exec docker-registry bin/registry garbage-collect --delete-untagged /etc/docker/registry/config.yml'
