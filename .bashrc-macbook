@@ -355,7 +355,7 @@ PERL_MM_OPT="INSTALL_BASE=/Users/jxpsys/perl5"; export PERL_MM_OPT;
 export DISPLAY=""
 export SSH_ASKPASS=/usr/local/bin/ssh-askpass
 # aliases for yubikey
-alias ritsc='export SSH_AUTH_SOCK=~/ssh.auth ; eval ssh-agent -t4h -a ~/ssh.auth ; echo | ssh-add -c -s /usr/local/lib/libykcs11.dylib'
-alias homesc='export SSH_AUTH_SOCK=~/ssh.auth ; eval ssh-agent -t4h -a ~/ssh.auth; echo | ssh-add -s /usr/local/lib/libykcs11.dylib'
+alias ritsc='export SSH_AUTH_SOCK=~/ssh.auth ; eval ssh-agent -t4h -a ~/ssh.auth ; echo | ssh-add -c -s /usr/local/lib/opensc-pkcs11.so'
+alias homesc='export SSH_AUTH_SOCK=~/ssh.auth ; eval ssh-agent -t4h -a ~/ssh.auth; echo | ssh-add -s /usr/local/lib/opensc-pkcs11.so'
 alias yk='export SSH_AUTH_SOCK=~/ssh.auth'
 alias cleansc='kill -9 $(pgrep ssh-agent) >& /dev/null; /bin/rm ~/ssh.auth'
