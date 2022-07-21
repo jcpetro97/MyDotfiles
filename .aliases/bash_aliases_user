@@ -4,6 +4,8 @@ alias ritsc='export SSH_AUTH_SOCK=~/ssh.auth ; eval ssh-agent -t4h -a ~/ssh.auth
 alias homesc='export SSH_AUTH_SOCK=~/ssh.auth ; eval ssh-agent -t4h -a ~/ssh.auth; echo | ssh-add -s /usr/lib/libykcs11.so'
 alias yk='export SSH_AUTH_SOCK=~/ssh.auth'
 alias cleansc='kill -9 $(pgrep ssh-agent) >& /dev/null; /bin/rm ~/ssh.auth'
+# refreshes ssh_auth_sock in the event that it expires useful for tmux sessions
+alias fixssh='eval $(tmux showenv -s SSH_AUTH_SOCK)'
 # Aliases for wireguard
 alias wgdown='sudo wg-quick down '
 alias wgup='sudo wg-quick up '
