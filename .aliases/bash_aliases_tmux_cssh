@@ -1,8 +1,8 @@
 #   ---------------------------------------
 #   tmux-cssh aliases
 #   ---------------------------------------
-alias clawsdev='~/bin/tmux-cssh ewdeploy@claws-developers-mgmt-{1..3}.rit.edu ewdeploy@claws-developers-wrkr-{1..3}.rit.edu'
+alias clawsdev='~/bin/tmux-cssh jxpsys@claws-developers-mgmt-{1..3}.rit.edu jxpsys@claws-developers-wrkr-{1..3}.rit.edu'
 alias clawsnp='~/bin/tmux-cssh ewdeploy@claws-np-mgmt-{1..3}.rit.edu ewdeploy@claws-np-wrkr-{1..2}.rit.edu'
 alias clawsp='~/bin/tmux-cssh ewdeploy@claws-p-mgmt-{1..3}.rit.edu ewdeploy@claws-p-wrkr-{1..2}.rit.edu'
 alias itstools='~/bin/tmux-cssh ewdeploy@its-tools-mgmt-{1..3}.rit.edu ewdeploy@its-tools-wrkr-{1..3}.rit.edu'
-alias cnitest='~/bin/tmux-cssh ewdeploy@cni-test-{1..3}.rit.edu' 
+alias cnitest='~/bin/tmux-cssh jxpsys@cni-test-{1..3}.rit.edu' 
