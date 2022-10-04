@@ -249,6 +249,11 @@ denter() {
  return 0
 }
 
+clusters() {
+    if [ -f "$HOME/.aliases/bash_aliases_tmux_cssh"]; then
+        cat ~/.aliases/bash_aliases_tmux_cssh  | grep -v "#" | cut -d ' ' -f 1 --complement
+}
+
 alias tmattach='tmux attach -d -t '
 alias tmcreate='tmux new -s '
 alias tmlist='tmux ls'
