@@ -250,7 +250,7 @@ denter() {
 }
 
 clusters() {
-    if [ -f "$HOME/.aliases/bash_aliases_tmux_cssh"]; then
+    if [ -f ~/.aliases/bash_aliases_tmux_cssh ]; then
         cat ~/.aliases/bash_aliases_tmux_cssh  | grep -v "#" | cut -d ' ' -f 1 --complement
     fi
 }
