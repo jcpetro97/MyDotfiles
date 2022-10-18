@@ -10,6 +10,9 @@
 [includeIf "gitdir:~/dvl/RIT/"]
     path = ~/.gitconfig-rit
 
+[includeIf "gitdir:~/Documents/Obsidian/RIT/"]
+    path = ~/.gitconfig-rit
+
 [color]
   branch = auto
   diff = auto
