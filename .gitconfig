@@ -13,6 +13,9 @@
 [includeIf "gitdir:~/Documents/Obsidian/RIT/"]
     path = ~/.gitconfig-rit
 
+[includeIf "gitdir:~/Documents/Obsidian/"]
+    path = ~/.gitconfig-personal
+
 [color]
   branch = auto
   diff = auto
