@@ -15,7 +15,8 @@
 
 [includeIf "gitdir:~/Documents/Obsidian/"]
     path = ~/.gitconfig-personal
-
+[pager]
+  branch = false
 [color]
   branch = auto
   diff = auto
