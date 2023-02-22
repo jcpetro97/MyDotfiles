@@ -351,7 +351,6 @@ PERL_MB_OPT="--install_base \"/Users/jxpsys/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/jxpsys/perl5"; export PERL_MM_OPT;
 #
 #
-<<<<<<< HEAD
 export DISPLAY="ssh-askpass"
 =======
 export DISPLAY=""
@@ -361,4 +360,3 @@ if [ -d "$HOME/.aliases/" ]; then
         . "$file"
     done
 fi
->>>>>>> 2711fbd2951ad89c0b296a673d7f12009922a7e7
