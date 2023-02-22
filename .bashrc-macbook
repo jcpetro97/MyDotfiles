@@ -352,3 +352,9 @@ PERL_MM_OPT="INSTALL_BASE=/Users/jxpsys/perl5"; export PERL_MM_OPT;
 #
 #
 export DISPLAY=""
+if [ -d "$HOME/.aliases/" ]; then
+    for file in $HOME/.aliases/bash_aliases_*; do
+        #echo "loading aliases file: $file"
+        . "$file"
+    done
+fi
