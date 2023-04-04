@@ -6,3 +6,4 @@ alias clawsnp='~/bin/tmux-cssh jxpsys@claws-np-mgmt-{1..3}.rit.edu jxpsys@claws-
 alias clawsp='~/bin/tmux-cssh jxpsys@claws-p-mgmt-{1..3}.rit.edu jxpsys@claws-p-wrkr-{1..2}.rit.edu'
 alias itstools='~/bin/tmux-cssh jxpsys@its-tools-mgmt-{1..3}.rit.edu jxpsys@its-tools-wrkr-{1..3}.rit.edu'
 alias cnitest='~/bin/tmux-cssh jxpsys@cni-test-{1..3}.rit.edu' 
+alias itsgp='~/bin/tmux-cssh jxpsys@gp-mgmt-{1..3}.rit.edu jxpsys@gp-wrkr-{1..3}.rit.edu'
