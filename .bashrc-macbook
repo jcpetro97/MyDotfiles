@@ -42,7 +42,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 #   ------------------------------------------------------------
     export USER="jxpsys"
     export PATH="/usr/local/bin/:$PATH"
-    export PATH="/usr/local/git/bin:/usr/local/opt/krb5/bin:/sw/bin/:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
+    export PATH="/usr/local/git/bin:/usr/local/opt/krb5/bin:/sw/bin/:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
     export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/2.7/sbin:/Users/jxpsys/bin:$PATH"
     ###export PATH="/usr/local/git/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
     export PATH="/usr/local/opt/krb5/bin:$PATH"
