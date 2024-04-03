@@ -49,7 +49,7 @@ HISTFILESIZE=2000
 
 #   Set Paths
 #   ------------------------------------------------------------
-    export PATH="/opt/java/bin:/opt/java/lib:/bin:/usr/bin:/sbin:/usr/sbin:/usr/lib:/usr/local/bin:/usr/local/sbin"
+    export PATH="/home/${USER}/.local/bin:/opt/java/bin:/opt/java/lib:/bin:/usr/bin:/sbin:/usr/sbin:/usr/lib:/usr/local/bin:/usr/local/sbin"
     export PATH="$PATH:/usr/local/share:/opt/kde3/bin:/home/${USER}/bin:/home/${USER}/todo/bin:/opt/SublimeText:/usr/games"
 
 
