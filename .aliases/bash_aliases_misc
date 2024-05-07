@@ -1,2 +1,7 @@
+#
+# Ansible managed
+#
+
 # go to my obsidian vault directory
 alias myvault='cd ~/Documents/Obsidian/MyVault'
+alias gprune='git fetch --prune origin'

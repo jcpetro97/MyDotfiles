@@ -266,6 +266,8 @@ if [ -f .tmux.startup ]; then
    ~/.tmux.startup
 fi
 
+export SSH_AUTH_SOCK=~/ssh.auth
+
 # Include alias file (if present) containing aliases for ssh, etc.
 if [ -d "$HOME/.aliases/" ]; then
     for file in $HOME/.aliases/bash_aliases_*; do

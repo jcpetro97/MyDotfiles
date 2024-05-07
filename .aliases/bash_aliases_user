@@ -1,7 +1,11 @@
+#
+# Ansible managed
+#
+
 # aliases for yubikey
 export SSH_ASKPASS=/bin/ssh-askpass
-alias ritsc='export SSH_AUTH_SOCK=~/ssh.auth ; eval ssh-agent -t8h -a ~/ssh.auth ; echo | ssh-add -c -s /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so'
-alias homesc='export SSH_AUTH_SOCK=~/ssh.auth ; eval ssh-agent -t8h -a ~/ssh.auth; echo | ssh-add -s /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so'
+alias ritsc='kill -9 $(pgrep ssh-agent) >& /dev/null; /bin/rm ~/ssh.auth; eval ssh-agent -t8h -a ~/ssh.auth ; echo | ssh-add -c -s /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so'
+alias homesc='kill -9 $(pgrep ssh-agent) >& /dev/null; /bin/rm ~/ssh.auth; eval ssh-agent -t8h -a ~/ssh.auth; echo | ssh-add -s /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so'
 alias yk='export SSH_AUTH_SOCK=~/ssh.auth'
 alias cleansc='kill -9 $(pgrep ssh-agent) >& /dev/null; /bin/rm ~/ssh.auth'
 # refreshes ssh_auth_sock in the event that it expires useful for tmux sessions

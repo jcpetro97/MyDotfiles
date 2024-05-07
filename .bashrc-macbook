@@ -1,3 +1,7 @@
+#
+# Ansible managed
+#
+
 #  ---------------------------------------------------------------------------
 #
 #  Description:  This file holds all my BASH configurations and aliases
@@ -99,21 +103,7 @@ alias ns='nslookup '
 alias dirsize='du -s * .[^.]* | sort -rn | cut -f2 | tr "\n" "\0" | xargs -0 -I {} du -sh "{}"'
 alias dirsizer='sudo du -s * .[^.]* | sort -rn | cut -f2 | tr "\n" "\0" | xargs -0 -I {} du -sh "{}"'
 alias dirsizen='sudo du -s * .[^.]* | sort -n | cut -f2 | tr "\n" "\0" | xargs -0 -I {} du -sh "{}"'
-alias main='kinit -f -c /tmp/krb5cc_56827 jxpsys@MAIN.AD.RIT.EDU'
-alias ki='kinit -f -c /tmp/krb5cc_56827 jxpsys@RIT.EDU'
-alias kl='klist -c /tmp/krb5cc_56827 ; echo ; klist -c /tmp/krb5cc_56827_OATH ; echo ; klist -c /tmp/krb5cc_56827_SCARDTEST ; klist -c /tmp/krb5cc_56827_MAIN'
-alias oath='kinit -f -c /tmp/krb5cc_56827_OATH jxpsys@OATH.RIT.EDU'
-alias krboath='export KRB5CCNAME=/tmp/krb5cc_56827_OATH'
-alias scard='kinit -f -c /tmp/krb5cc_56827_SCARDTEST jxpsys@SCARDTEST.RIT.EDU'
-alias myrepo='cd ~/dvl/Personal/Ansible/MyRepo'
-alias myansible='cd ~/dvl/Personal/Ansible/'
-alias vault='cd ~/dvl/Personal/Ansible/MyRepo/vault'
-alias vf='cd ~/dvl/Personal/Vagrant/VagrantFiles'
 alias dvl='cd ~/dvl'
-alias personal='cd ~/dvl/Personal'
-alias ubuntu2004='cd ~/dvl/ServerAutomation/Packer/LinuxSubteam/Ubuntu2004'
-alias rhel7='cd ~/dvl/ServerAutomation/Packer/LinuxSubteam/RHEL7'
-alias subteam='cd ~/dvl/ServerAutomation/Packer/LinuxSubteam'
 alias glog="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'"
 #
 #   colorize ls and grep
@@ -277,6 +267,21 @@ alias showBlocked='sudo ipfw list'                  # showBlocked:  All ipfw rul
 #   ---------------------------------------
 #   7.  SYSTEMS OPERATIONS & INFORMATION
 #   ---------------------------------------
+# Delete a given line number in the known_hosts file.
+knownrm() {
+ re='^[0-9]+$'
+ if ! [[ $1 =~ $re ]] ; then
+   echo "error: line number missing" >&2;
+ else
+   sed -i '' "$1d" ~/.ssh/known_hosts
+ fi
+}
+
+clusters() {
+    if [ -f ~/.aliases/bash_aliases_tmux_cssh ]; then
+        cat ~/.aliases/bash_aliases_tmux_cssh  | grep -v "#" | cut -d ' ' -f 1 --complement
+    fi
+}
 
 alias mountReadWrite='/sbin/mount -uw /'    # mountReadWrite:   For use when booted into single-user
 
@@ -352,6 +357,8 @@ PERL_MM_OPT="INSTALL_BASE=/Users/jxpsys/perl5"; export PERL_MM_OPT;
 #
 #
 export DISPLAY="ssh-askpass"
+export SSH_AUTH_SOCK=~/ssh.auth
+
 if [ -d "$HOME/.aliases/" ]; then
     for file in $HOME/.aliases/bash_aliases_*; do
         #echo "loading aliases file: $file"

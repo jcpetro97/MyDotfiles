@@ -1,9 +1,38 @@
+#
+# Ansible managed
+#
+
+
 #   ---------------------------------------
 #   tmux-cssh aliases
 #   ---------------------------------------
-alias clawsdev='~/bin/tmux-cssh jxpsys@claws-developers-mgmt-{1..3}.rit.edu jxpsys@claws-developers-wrkr-{1..3}.rit.edu'
-alias clawsnp='~/bin/tmux-cssh jxpsys@claws-np-mgmt-{1..3}.rit.edu jxpsys@claws-np-wrkr-{1..2}.rit.edu'
-alias clawsp='~/bin/tmux-cssh jxpsys@claws-p-mgmt-{1..3}.rit.edu jxpsys@claws-p-wrkr-{1..2}.rit.edu'
-alias itstools='~/bin/tmux-cssh jxpsys@its-tools-mgmt-{1..3}.rit.edu jxpsys@its-tools-wrkr-{1..3}.rit.edu'
+alias clawsdev='~/bin/tmux-cssh jxpsys@claws-dev-a-mgmt-{1..3}.rit.edu jxpsys@claws-dev-a-wrkr-{1..4}.rit.edu'
+alias clawsdev-mgmt='~/bin/tmux-cssh jxpsys@claws-dev-a-mgmt-{1..3}.rit.edu'
+alias clawsdev-wrkr='~/bin/tmux-cssh jxpsys@claws-dev-a-wrkr-{1..4}.rit.edu'
+#
+alias clawsnp='~/bin/tmux-cssh jxpsys@claws-np-a-mgmt-{1..3}.rit.edu jxpsys@claws-np-a-wrkr-{1..3}.rit.edu'
+alias clawsnp-mgmt='~/bin/tmux-cssh jxpsys@claws-np-a-mgmt-{1..3}.rit.edu'
+alias clawsnp-wrkr='~/bin/tmux-cssh jxpsys@claws-np-a-wrkr-{1..3}.rit.edu'
+#
+alias clawsp='~/bin/tmux-cssh jxpsys@claws-p-a-mgmt-{1..3}.rit.edu jxpsys@claws-p-a-wrkr-{1..3}.rit.edu'
+alias clawsp-mgmt='~/bin/tmux-cssh jxpsys@claws-p-a-mgmt-{1..3}.rit.edu'
+alias clawsp-wrkr='~/bin/tmux-cssh jxpsys@claws-p-a-wrkr-{1..3}.rit.edu'
+#
 alias cnitest='~/bin/tmux-cssh jxpsys@cni-test-{1..3}.rit.edu' 
-alias itsgp='~/bin/tmux-cssh jxpsys@gp-mgmt-{1..3}.rit.edu jxpsys@gp-wrkr-{1..3}.rit.edu'
+#
+alias itsrancher='~/bin/tmux-cssh jxpsys@its-rancher-1.rit.edu'
+#
+alias itstools='~/bin/tmux-cssh jxpsys@its-tools-mgmt-{1..3}.rit.edu jxpsys@its-tools-wrkr-{1..3}.rit.edu'
+alias itstools-mgmt='~/bin/tmux-cssh jxpsys@its-tools-mgmt-{1..3}.rit.edu'
+alias itstools-wrkr='~/bin/tmux-cssh jxpsys@its-tools-wrkr-{1..3}.rit.edu'
+#
+alias itsgp-p='~/bin/tmux-cssh jxpsys@gp-mgmt-{1..3}.rit.edu jxpsys@gp-wrkr-{1..4}.rit.edu'
+alias itsgp-p-mgmt='~/bin/tmux-cssh jxpsys@gp-mgmt-{1..3}.rit.edu'
+alias itsgp-p-wrkr='~/bin/tmux-cssh jxpsys@gp-wrkr-{1..4}.rit.edu'
+#
+alias itsgp-np='~/bin/tmux-cssh jxpsys@gp-np-mgmt-{1..3}.rit.edu jxpsys@gp-np-wrkr-{1..2}.rit.edu'
+alias itsgp-np-mgmt='~/bin/tmux-cssh jxpsys@gp-np-mgmt-{1..3}.rit.edu'
+alias itsgp-np-wrkr='~/bin/tmux-cssh jxpsys@gp-np-wrkr-{1..2}.rit.edu'
+#
+alias sixnet='~/bin/tmux-cssh jxpsys@sixnet-tools-1.rit.edu' 
+#
