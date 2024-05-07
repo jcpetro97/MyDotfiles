@@ -1,3 +1,7 @@
+#
+# Ansible managed
+#
+
 [user]
 	name = John Petro
 	email = john@johnpetro.com

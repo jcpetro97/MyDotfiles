@@ -1,3 +1,7 @@
+"
+" Ansible managed
+"
+
 syntax on               " enable syntax highlighting
 "set cursorline          " highlight the current line
 set nobackup            " don't create pointless backup files; Use VCS instead
