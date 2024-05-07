@@ -283,6 +283,7 @@ clusters() {
     fi
 }
 
+alias aliases='alias | cut -d ' ' -f 1 --complement'
 alias mountReadWrite='/sbin/mount -uw /'    # mountReadWrite:   For use when booted into single-user
 
 #   cleanupDS:  Recursively delete .DS_Store files
