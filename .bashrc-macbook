@@ -280,7 +280,7 @@ knownrm() {
 
 clusters() {
     if [ -f ~/.aliases/bash_aliases_tmux_cssh ]; then
-        cat ~/.aliases/bash_aliases_tmux_cssh  | grep -v "#" | cut -d ' ' -f 1 --complement
+        cat ~/.aliases/bash_aliases_tmux_cssh  | grep -v "#" | grep "alias " | cut -c 7-
     fi
 }
 
