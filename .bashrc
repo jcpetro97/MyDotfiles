@@ -255,10 +255,6 @@ clusters() {
     fi
 }
 
-myaliases() {
-        alias | cut -d ' ' -f 1 --complement
-}
-
 alias tmattach='tmux attach -d -t '
 alias tmcreate='tmux new -s '
 alias tmlist='tmux ls'
