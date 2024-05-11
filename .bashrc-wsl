@@ -112,6 +112,7 @@ alias dvl='cd ~/dvl'
 alias myansible='cd ~/dvl/Ansible'
 alias rit='cd ~/dvl/RIT'
 alias ritansible='cd ~/dvl/RIT/Ansible'
+alias serverauto='cd ~/dvl/RIT/Ansible/ServerAutomation'
 #   lr:  Full Recursive Directory Listing
 #   ------------------------------------------
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'

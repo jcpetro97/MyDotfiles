@@ -108,6 +108,7 @@ alias dvl='cd ~/dvl'
 alias myansible='cd ~/dvl/Ansible'
 alias rit='cd ~/dvl/RIT'
 alias ritansible='cd ~/dvl/RIT/Ansible'
+alias serverauto='cd ~/dvl/RIT/Ansible/ServerAutomation'
 alias glog="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'"
 #
 #   colorize ls and grep
