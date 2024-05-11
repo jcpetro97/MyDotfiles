@@ -109,7 +109,7 @@ alias disks='lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL'
 alias xscreensaver='xscreensaver -no-splash -log /var/tmp/xscreensaver.log'
 alias go='~/.screenlayout/screenlayout.sh'
 alias dvl='cd ~/dvl'
-alias ansible='cd ~/dvl/Ansible'
+alias myansible='cd ~/dvl/Ansible'
 alias rit='cd ~/dvl/RIT'
 alias ritansible='cd ~/dvl/RIT/Ansible'
 #   lr:  Full Recursive Directory Listing
