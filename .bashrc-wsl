@@ -207,8 +207,6 @@ alias lsock='sudo /usr/bin/lsof -i -P'             # lsock:        Display open 
 alias lsockU='sudo /usr/bin/lsof -nP | grep UDP'   # lsockU:       Display only open UDP sockets
 alias lsockT='sudo /usr/bin/lsof -nP | grep TCP'   # lsockT:       Display only open TCP sockets
 alias openPorts='sudo lsof -i | grep LISTEN'        # openPorts:    All listening connections
-alias vnstat='vnstat -i eth0'
-alias vnstatvm8='vnstat -i vmnet8'
 #
 ##fail2ban aliases
 alias f2bstat='sudo fail2ban-client status '
