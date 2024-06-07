@@ -43,7 +43,7 @@ if [ "$PS1" ]; then
         export PS2="| => "
 fi       
 
-if [ ${XDG_SESSION_TYPE} != "tty" ]; then
+if [[ ${XDG_SESSION_TYPE} != "tty" ]]; then
    export SSH_AUTH_SOCK=~/ssh.auth
 fi
 
