@@ -43,6 +43,10 @@ if [ "$PS1" ]; then
         export PS2="| => "
 fi       
 
+if [ ${XDG_SESSION_TYPE} != "tty" ]; then
+   export SSH_AUTH_SOCK=~/ssh.auth
+fi
+
 HISTSIZE=1000
 HISTFILESIZE=2000
 
@@ -110,9 +114,14 @@ alias xscreensaver='xscreensaver -no-splash -log /var/tmp/xscreensaver.log'
 alias go='~/.screenlayout/screenlayout.sh'
 alias dvl='cd ~/dvl'
 alias myansible='cd ~/dvl/Ansible'
+alias boxes-novc='cd ~/dvl/Personal/Packer/packer-boxes-novc'
+alias boxes='cd ~/dvl/Personal/Packer/packer-boxes'
 alias rit='cd ~/dvl/RIT'
 alias ritansible='cd ~/dvl/RIT/Ansible'
 alias serverauto='cd ~/dvl/RIT/Ansible/ServerAutomation'
+alias ritrhel='cd ~/dvl/RIT/Packer/RHEL'
+alias ritubuntu='cd ~/dvl/RIT/Packer/Ubuntu'
+
 #   lr:  Full Recursive Directory Listing
 #   ------------------------------------------
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
@@ -208,7 +217,6 @@ alias lsockU='sudo /usr/bin/lsof -nP | grep UDP'   # lsockU:       Display only 
 alias lsockT='sudo /usr/bin/lsof -nP | grep TCP'   # lsockT:       Display only open TCP sockets
 alias openPorts='sudo lsof -i | grep LISTEN'        # openPorts:    All listening connections
 alias vnstat='vnstat -i eth0'
-alias vnstatvm8='vnstat -i vmnet8'
 #
 ##fail2ban aliases
 alias f2bstat='sudo fail2ban-client status '
@@ -259,23 +267,19 @@ clusters() {
     fi
 }
 
-alias tmattach='tmux attach -d -t '
-alias tmcreate='tmux new -s '
-alias tmlist='tmux ls'
-alias tmnw='tmux new-window -d -n '
-alias nxstatus='sudo systemctl status nxserver'
-alias nxrestart='sudo systemctl restart nxserver'
+alias tmattach='tmux attach -d -t '      # tmux attach ( detatches existing sessions first )
+alias tmcreate='tmux new -s '            # tmux create new session
+alias tmlist='tmux ls'                   # tmux list all sessions
+alias tmnw='tmux new-window -d -n '      # create a new window inside a session
 #
 if [ -f .tmux.startup ]; then
    ~/.tmux.startup
 fi
 
-export SSH_AUTH_SOCK=~/ssh.auth
 
 # Include alias file (if present) containing aliases for ssh, etc.
 if [ -d "$HOME/.aliases/" ]; then
     for file in $HOME/.aliases/bash_aliases_*; do
-        #echo "loading aliases file: $file"
         . "$file"
     done
 fi
