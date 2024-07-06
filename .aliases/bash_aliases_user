@@ -13,3 +13,6 @@ alias fixssh='eval $(tmux showenv -s SSH_AUTH_SOCK)'
 # Aliases for wireguard
 alias wgdown='sudo wg-quick down '
 alias wgup='sudo wg-quick up '
+alias proxy-tardis='ssh -D 1171 -q -C -N tardis.rit.edu'
+alias proxy-rst='ssh -D 1171 -q -C -N rst.rit.edu'
+alias brave='brave-browser --proxy-server="socks5://127.0.0.1:1171"'

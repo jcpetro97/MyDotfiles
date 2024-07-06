@@ -10,3 +10,6 @@ alias yk='export SSH_AUTH_SOCK=~/ssh.auth'
 alias cleansc='kill -9 $(pgrep ssh-agent) >& /dev/null; /bin/rm ~/ssh.auth'
 # refreshes ssh_auth_sock in the event that it expires useful for tmux sessions
 alias fixssh='eval $(tmux showenv -s SSH_AUTH_SOCK)'
+alias proxy-tardis='ssh -D 1171 -q -C -N tardis.rit.edu'
+alias proxy-rst='ssh -D 1171 -q -C -N rst.rit.edu'
+alias brave='/Applications/Brave Browser.app/Contents/MacOS/Brave Browser --proxy-server="socks5://127.0.0.1:1171"'
