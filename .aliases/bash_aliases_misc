@@ -4,4 +4,5 @@
 
 # go to my obsidian vault directory
 alias myvault='cd ~/Documents/Obsidian/MyVault'
+alias ritvault='cd ~/Documents/Obsidian/RIT'
 alias gprune='git fetch --prune origin'
