@@ -37,3 +37,7 @@ alias itsgp-np-wrkr='~/bin/tmux-cssh jxpsys@gp-np-wrkr-{1..2}.rit.edu'
 alias sixnet='~/bin/tmux-cssh jxpsys@sixnet-tools-1.rit.edu' 
 #
 alias systems-test='~/bin/tmux-cssh jxpsys@systems-test-a-{1..3}.rit.edu'
+#
+alias ewa-p='~/bin/tmux-cssh jxpsys@ewa-p-a-mgmt-{1..3}.rit.edu jxpsys@ewa-p-a-wrkr-{1..4}.rit.edu'
+alias ewa-p-mgmt='~/bin/tmux-cssh jxpsys@ewa-p-a-mgmt-{1..3}.rit.edu'
+alias ewa-p-wrkr='~/bin/tmux-cssh jxpsys@ewa-p-a-wrkr-{1..4}.rit.edu'
