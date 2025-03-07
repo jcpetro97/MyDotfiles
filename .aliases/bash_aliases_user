@@ -1,7 +1,11 @@
 #
 # Ansible managed
 #
+# XDG variables - Needed in case you are using rootless podman
+#
 
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CONFIG_HOME=$HOME/.config
 # aliases for yubikey
 export SSH_ASKPASS=/bin/ssh-askpass
 alias ritsc='kill -9 $(pgrep ssh-agent) >& /dev/null; /bin/rm ~/ssh.auth; eval ssh-agent -t8h -a ~/ssh.auth ; echo | ssh-add -c -s /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so'
