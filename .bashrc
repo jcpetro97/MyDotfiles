@@ -31,7 +31,7 @@ if [ "$PS1" ]; then
         unset autologout
         set colorcat
         set autolist
-        if [ $USER = "root" ]; then
+        if [[ $EUID -eq 0 ]]; then
 	export PS1="\[\e[1;31m\]\h\[\e[0;32m\]{\u}\[\e[m\]\! \w: "
 
         else
@@ -284,4 +284,8 @@ if [ -d "$HOME/.aliases/" ]; then
     done
 fi
 
+# Run neofetch if the user is not root and is in the user's path
+if [[ $EUID -ne 0 ]] && command -v neofetch >/dev/null 2>&1; then
+    neofetch
+fi
 #   8.  REMINDERS & NOTES
