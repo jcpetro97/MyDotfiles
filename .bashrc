@@ -25,6 +25,10 @@
 #   Change Prompt
 #   ------------------------------------------------------------
 USER=`id -u -n`
+
+# Exit early if not interactive
+[[ $- != *i* ]] && return
+
 if [ "$PS1" ]; then
         set history=1500
         stty erase ^?
@@ -43,10 +47,6 @@ if [ "$PS1" ]; then
         export PS2="| => "
 fi       
 
-case $- in
-  *i*) ;;
-  *) return;;
-esac
 
 if [[ ${XDG_SESSION_TYPE} != "tty" ]]; then
    export SSH_AUTH_SOCK=~/ssh.auth
