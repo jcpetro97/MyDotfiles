@@ -296,4 +296,6 @@ if [[ $EUID -ne 0 ]]; then
     elif command -v neowofetch >/dev/null 2>&1; then
         neowofetch
     fi
-fi#   8.  REMINDERS & NOTES
+fi
+
+#   8.  REMINDERS & NOTES
