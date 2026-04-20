@@ -17,7 +17,7 @@
 #  8.   Reminders & Notes
 #  9.   Work based Aliases
 #  10.  User Defined Aliases
-#  
+#
 #  ---------------------------------------------------------------------------
 
 #   1.  ENVIRONMENT CONFIGURATION
@@ -45,7 +45,7 @@ if [ "$PS1" ]; then
 
 
         export PS2="| => "
-fi       
+fi
 
 
 if [[ ${XDG_SESSION_TYPE} != "tty" ]]; then
@@ -289,8 +289,11 @@ if [ -d "$HOME/.aliases/" ]; then
     done
 fi
 
-# Run neofetch if the user is not root and is in the user's path
-if [[ $EUID -ne 0 ]] && command -v neofetch >/dev/null 2>&1; then
-    neofetch
-fi
-#   8.  REMINDERS & NOTES
+# Run neofetch or neowofetch if the user is not root and is in the user's path
+if [[ $EUID -ne 0 ]]; then
+    if command -v neofetch >/dev/null 2>&1; then
+        neofetch
+    elif command -v neowofetch >/dev/null 2>&1; then
+        neowofetch
+    fi
+fi#   8.  REMINDERS & NOTES
