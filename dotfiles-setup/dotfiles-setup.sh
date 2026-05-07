@@ -94,15 +94,11 @@ create_symlinks() {
 while [[ "$#" -gt 0 ]]; do
     case "$1" in
         -f|--files)
-            (
-              IFS=',' read -r -a DOTFILES_FILES_EXTRA <<< "$2"
-            )
+            IFS=',' read -r -a DOTFILES_FILES_EXTRA <<< "$2"
             shift 2
             ;;
         -a|--aliases)
-            (
-              IFS=',' read -r -a DOTFILES_ALIASES_EXTRA <<< "$2"
-            )
+            IFS=',' read -r -a DOTFILES_ALIASES_EXTRA <<< "$2"
             shift 2
             ;;
         -h|--help)
