@@ -1,6 +1,3 @@
-#
-# Ansible managed
-#
 
 alias mtail='multitail --follow-all -cS syslog /var/log/messages -cS fail2ban /var/log/fail2ban.log -cS sudo /var/tmp/sudo -cS vtssh /var/tmp/ssh  -cS backup /var/log/rsnapshot/rsnapshot.log'
 alias oath='kinit -c /tmp/krb5cc_56827_OATH -f jxpsys@OATH.RIT.EDU ; export KRB5CCNAME=/tmp/krb5cc_56827_OATH'

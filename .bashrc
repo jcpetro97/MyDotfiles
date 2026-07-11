@@ -1,6 +1,3 @@
-#
-# Ansible managed
-#
 
 #  ---------------------------------------------------------------------------
 #
@@ -48,12 +45,10 @@ if [ "$PS1" ]; then
 fi
 
 
-if [[ ${XDG_SESSION_TYPE} != "tty" ]]; then
-   export SSH_AUTH_SOCK=~/ssh.auth
-fi
-
 HISTSIZE=1000
 HISTFILESIZE=2000
+HISTCONTROL=ignoredups     # don't record consecutive duplicate commands
+shopt -s histappend        # append to the history file instead of overwriting it
 
 
 #   Set Paths
@@ -110,7 +105,7 @@ alias show_options='shopt'                  # Show_options: display bash options
 alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
 alias pss='ps -ef | grep -v grep | grep --color=auto '
 alias ns='nslookup '
-alias top='/usr/bin/htop'
+command -v htop >/dev/null 2>&1 && alias top='htop'
 alias dirsize='du -hs * .[^.]* | sort -hr'
 alias dirsizen='du -hs * .[^.]* | sort -h'
 alias disk='lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL'
@@ -119,13 +114,9 @@ alias xscreensaver='xscreensaver -no-splash -log /var/tmp/xscreensaver.log'
 alias go='~/.screenlayout/screenlayout.sh'
 alias dvl='cd ~/dvl'
 alias myansible='cd ~/dvl/Ansible'
-alias boxes-novc='cd ~/dvl/Personal/Packer/packer-boxes-novc'
-alias boxes='cd ~/dvl/Personal/Packer/packer-boxes'
 alias rit='cd ~/dvl/RIT'
 alias ritansible='cd ~/dvl/RIT/Ansible'
 alias serverauto='cd ~/dvl/RIT/Ansible/ServerAutomation'
-alias ritrhel='cd ~/dvl/RIT/Packer/RHEL'
-alias ritubuntu='cd ~/dvl/RIT/Packer/Ubuntu'
 
 #   lr:  Full Recursive Directory Listing
 #   ------------------------------------------
@@ -150,19 +141,19 @@ alias vi='/usr/bin/vim'			    # using vim instead of vi
 #   extract:  Extract most know archives with one command
 #   ---------------------------------------------------------
     extract () {
-        if [ -f $1 ] ; then
-          case $1 in
-            *.tar.bz2)   tar xjf $1     ;;
-            *.tar.gz)    tar xzf $1     ;;
-            *.bz2)       bunzip2 $1     ;;
-            *.rar)       unrar e $1     ;;
-            *.gz)        gunzip $1      ;;
-            *.tar)       tar xf $1      ;;
-            *.tbz2)      tar xjf $1     ;;
-            *.tgz)       tar xzf $1     ;;
-            *.zip)       unzip $1       ;;
-            *.Z)         uncompress $1  ;;
-            *.7z)        7z x $1        ;;
+        if [ -f "$1" ] ; then
+          case "$1" in
+            *.tar.bz2)   tar xjf "$1"     ;;
+            *.tar.gz)    tar xzf "$1"     ;;
+            *.bz2)       bunzip2 "$1"     ;;
+            *.rar)       unrar e "$1"     ;;
+            *.gz)        gunzip "$1"      ;;
+            *.tar)       tar xf "$1"      ;;
+            *.tbz2)      tar xjf "$1"     ;;
+            *.tgz)       tar xzf "$1"     ;;
+            *.zip)       unzip "$1"       ;;
+            *.Z)         uncompress "$1"  ;;
+            *.7z)        7z x "$1"        ;;
             *)     echo "'$1' cannot be extracted via extract()" ;;
              esac
          else
@@ -221,7 +212,6 @@ alias lsock='sudo /usr/bin/lsof -i -P'             # lsock:        Display open 
 alias lsockU='sudo /usr/bin/lsof -nP | grep UDP'   # lsockU:       Display only open UDP sockets
 alias lsockT='sudo /usr/bin/lsof -nP | grep TCP'   # lsockT:       Display only open TCP sockets
 alias openPorts='sudo lsof -i | grep LISTEN'        # openPorts:    All listening connections
-alias vnstat='vnstat -i eth0'
 #
 ##fail2ban aliases
 alias f2bstat='sudo fail2ban-client status '
@@ -251,7 +241,8 @@ knownrm() {
  if ! [[ $1 =~ $re ]] ; then
    echo "error: line number missing" >&2;
  else
-   sed -i '' "$1d" ~/.ssh/known_hosts
+   # -i.bak works with both GNU and BSD sed; -i '' is BSD-only
+   sed -i.bak "${1}d" ~/.ssh/known_hosts
  fi
 }
 
@@ -277,7 +268,7 @@ alias tmcreate='tmux new -s '            # tmux create new session
 alias tmlist='tmux ls'                   # tmux list all sessions
 alias tmnw='tmux new-window -d -n '      # create a new window inside a session
 #
-if [ -f .tmux.startup ]; then
+if [ -f ~/.tmux.startup ]; then
    ~/.tmux.startup
 fi
 
@@ -287,6 +278,12 @@ if [ -d "$HOME/.aliases/" ]; then
     for file in $HOME/.aliases/bash_aliases_*; do
         . "$file"
     done
+fi
+
+# Machine-specific settings (~/.bashrc-machine is a symlink created by
+# dotfiles-setup.sh pointing at bashrc.d/default.sh, wsl.sh, or macbook.sh)
+if [ -f "$HOME/.bashrc-machine" ]; then
+    . "$HOME/.bashrc-machine"
 fi
 
 # setup for pyenv

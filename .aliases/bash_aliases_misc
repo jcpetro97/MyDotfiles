@@ -1,6 +1,3 @@
-#
-# Ansible managed
-#
 
 # go to my obsidian vault directory
 alias myvault='cd ~/Documents/Obsidian/MyVault'

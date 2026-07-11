@@ -1,5 +1,4 @@
 "
-" Ansible managed
 "
 
 syntax on               " enable syntax highlighting
