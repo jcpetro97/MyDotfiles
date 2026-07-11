@@ -21,6 +21,9 @@ DOTFILES_ALIASES_COMMON=(
 DOTFILES_FILES_EXTRA=()
 DOTFILES_ALIASES_EXTRA=()
 
+# Machine type: default, wsl, or macbook. Empty means auto-detect.
+MACHINE_TYPE=""
+
 # --- User/Path Variables ---
 CURRENT_USER=$(whoami)
 USER_HOME="${HOME}"
@@ -37,8 +40,53 @@ usage() {
   echo "OPTIONS:"
   echo "  -f, --files <file1,file2,...>  Comma-separated list of extra dotfiles (e.g., .zshrc, .config/nvim/init.vim)"
   echo "  -a, --aliases <alias1,alias2,...> Comma-separated list of extra alias files (e.g., git_aliases, docker_aliases)"
+  echo "  -m, --machine <type>           Machine type: default, wsl, or macbook."
+  echo "                                 Links ~/.bashrc-machine to the matching"
+  echo "                                 bashrc.d/<type>.sh overlay (sourced by ~/.bashrc)."
+  echo "                                 On macbook, also links bash_aliases_user_macos."
+  echo "                                 If omitted, the machine type is auto-detected."
   echo "  -h, --help                     Display this help message"
   exit 0
+}
+
+# Function to auto-detect the machine type when -m/--machine is not given
+detect_machine_type() {
+  if [ "$(uname -s)" = "Darwin" ]; then
+    MACHINE_TYPE="macbook"
+  elif grep -qi "microsoft" /proc/version 2>/dev/null; then
+    MACHINE_TYPE="wsl"
+  else
+    MACHINE_TYPE="default"
+  fi
+  echo ">>> Auto-detected machine type: ${MACHINE_TYPE}"
+}
+
+# Function to back up an existing regular file before a symlink overwrites it
+backup_existing() {
+  local dest="$1"
+  if [ -e "${dest}" ] && [ ! -L "${dest}" ]; then
+    echo "    Backing up existing file: ${dest} -> ${dest}.bak"
+    mv "${dest}" "${dest}.bak"
+  fi
+}
+
+# Function to link the machine-specific bashrc overlay as ~/.bashrc-machine
+link_machine_bashrc() {
+  local overlay_source="bashrc.d/${MACHINE_TYPE}.sh"
+
+  echo ">>> Linking ${overlay_source} as ~/.bashrc-machine (machine type: ${MACHINE_TYPE})..."
+
+  if [ ! -e "${DOTFILES_DIR}/${overlay_source}" ]; then
+    echo "!!! ERROR: Source file not found: ${DOTFILES_DIR}/${overlay_source}. Skipping machine bashrc link."
+    return 1
+  fi
+
+  backup_existing "${USER_HOME}/.bashrc-machine"
+  ln -sf "${DOTFILES_DIR}/${overlay_source}" "${USER_HOME}/.bashrc-machine"
+
+  if [ $? -ne 0 ]; then
+    echo "!!! ERROR: Failed to create link for .bashrc-machine. Continuing..."
+  fi
 }
 
 # Function to ensure .aliases directory exists
@@ -80,6 +128,9 @@ create_symlinks() {
         mkdir -p "$(dirname "$DEST_PATH")"
     fi
 
+    # Preserve a pre-existing regular file (e.g. a distro-default .bashrc)
+    backup_existing "${DEST_PATH}"
+
     # ln -sf: creates a symbolic link, force overwrite (s: symbolic, f: force)
     ln -sf "${SRC_PATH}" "${DEST_PATH}"
     
@@ -101,6 +152,10 @@ while [[ "$#" -gt 0 ]]; do
             IFS=',' read -r -a DOTFILES_ALIASES_EXTRA <<< "$2"
             shift 2
             ;;
+        -m|--machine)
+            MACHINE_TYPE="$2"
+            shift 2
+            ;;
         -h|--help)
             usage
             ;;
@@ -119,6 +174,26 @@ echo "=========================================="
 echo "User: ${CURRENT_USER}"
 echo "Home: ${USER_HOME}"
 echo "------------------------------------------"
+
+# Determine machine type (auto-detect if not passed via -m/--machine)
+if [ -z "${MACHINE_TYPE}" ]; then
+  detect_machine_type
+else
+  case "${MACHINE_TYPE}" in
+    default|wsl|macbook)
+      echo ">>> Machine type (from arguments): ${MACHINE_TYPE}"
+      ;;
+    *)
+      echo "!!! ERROR: Invalid machine type '${MACHINE_TYPE}'. Valid types: default, wsl, macbook."
+      exit 1
+      ;;
+  esac
+fi
+
+# The macbook gets its extra macOS alias file
+if [ "${MACHINE_TYPE}" = "macbook" ]; then
+  DOTFILES_ALIASES_COMMON+=(bash_aliases_user_macos)
+fi
 
 # Check for the existence of the dotfiles source directory
 if [ ! -d "${DOTFILES_DIR}" ]; then
@@ -148,14 +223,17 @@ else
   echo ">>> No extra aliases specified."
 fi
 
-# 4. Link common dotfiles
+# 4. Link the machine-specific bashrc overlay
+link_machine_bashrc
+
+# 5. Link common dotfiles
 echo ">>> Linking common dotfiles..."
 create_symlinks \
   "${DOTFILES_DIR}" \
   "${USER_HOME}" \
   "${DOTFILES_FILES_COMMON[@]}"
 
-# 5. Link extra dotfiles (if provided)
+# 6. Link extra dotfiles (if provided)
 if [ ${#DOTFILES_FILES_EXTRA[@]} -gt 0 ]; then
   echo ">>> Linking extra dotfiles (from arguments)..."
   create_symlinks \

@@ -48,10 +48,6 @@ if [ "$PS1" ]; then
 fi
 
 
-if [[ ${XDG_SESSION_TYPE} != "tty" ]]; then
-   export SSH_AUTH_SOCK=~/ssh.auth
-fi
-
 HISTSIZE=1000
 HISTFILESIZE=2000
 
@@ -110,7 +106,7 @@ alias show_options='shopt'                  # Show_options: display bash options
 alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
 alias pss='ps -ef | grep -v grep | grep --color=auto '
 alias ns='nslookup '
-alias top='/usr/bin/htop'
+command -v htop >/dev/null 2>&1 && alias top='htop'
 alias dirsize='du -hs * .[^.]* | sort -hr'
 alias dirsizen='du -hs * .[^.]* | sort -h'
 alias disk='lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL'
@@ -119,13 +115,9 @@ alias xscreensaver='xscreensaver -no-splash -log /var/tmp/xscreensaver.log'
 alias go='~/.screenlayout/screenlayout.sh'
 alias dvl='cd ~/dvl'
 alias myansible='cd ~/dvl/Ansible'
-alias boxes-novc='cd ~/dvl/Personal/Packer/packer-boxes-novc'
-alias boxes='cd ~/dvl/Personal/Packer/packer-boxes'
 alias rit='cd ~/dvl/RIT'
 alias ritansible='cd ~/dvl/RIT/Ansible'
 alias serverauto='cd ~/dvl/RIT/Ansible/ServerAutomation'
-alias ritrhel='cd ~/dvl/RIT/Packer/RHEL'
-alias ritubuntu='cd ~/dvl/RIT/Packer/Ubuntu'
 
 #   lr:  Full Recursive Directory Listing
 #   ------------------------------------------
@@ -221,7 +213,6 @@ alias lsock='sudo /usr/bin/lsof -i -P'             # lsock:        Display open 
 alias lsockU='sudo /usr/bin/lsof -nP | grep UDP'   # lsockU:       Display only open UDP sockets
 alias lsockT='sudo /usr/bin/lsof -nP | grep TCP'   # lsockT:       Display only open TCP sockets
 alias openPorts='sudo lsof -i | grep LISTEN'        # openPorts:    All listening connections
-alias vnstat='vnstat -i eth0'
 #
 ##fail2ban aliases
 alias f2bstat='sudo fail2ban-client status '
@@ -287,6 +278,12 @@ if [ -d "$HOME/.aliases/" ]; then
     for file in $HOME/.aliases/bash_aliases_*; do
         . "$file"
     done
+fi
+
+# Machine-specific settings (~/.bashrc-machine is a symlink created by
+# dotfiles-setup.sh pointing at bashrc.d/default.sh, wsl.sh, or macbook.sh)
+if [ -f "$HOME/.bashrc-machine" ]; then
+    . "$HOME/.bashrc-machine"
 fi
 
 # setup for pyenv
