@@ -242,7 +242,8 @@ knownrm() {
  if ! [[ $1 =~ $re ]] ; then
    echo "error: line number missing" >&2;
  else
-   sed -i '' "$1d" ~/.ssh/known_hosts
+   # -i.bak works with both GNU and BSD sed; -i '' is BSD-only
+   sed -i.bak "${1}d" ~/.ssh/known_hosts
  fi
 }
 
@@ -268,7 +269,7 @@ alias tmcreate='tmux new -s '            # tmux create new session
 alias tmlist='tmux ls'                   # tmux list all sessions
 alias tmnw='tmux new-window -d -n '      # create a new window inside a session
 #
-if [ -f .tmux.startup ]; then
+if [ -f ~/.tmux.startup ]; then
    ~/.tmux.startup
 fi
 

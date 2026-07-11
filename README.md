@@ -12,4 +12,6 @@
 * **.gitconfig-rit** - sets the default user/email for work related content
 * **.vimrc**
 
+Run `./check.sh` to syntax-check every bash file in the repo (can also be linked as a git pre-commit hook — see the comments in the script).
+
 See [dotfiles-setup/README.md](dotfiles-setup/README.md) for the setup script. Everyone gets the same ~/.bashrc; the `-m/--machine` option (default, wsl, or macbook — auto-detected if omitted) controls which bashrc.d overlay gets linked as ~/.bashrc-machine.
