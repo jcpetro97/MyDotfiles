@@ -1,6 +1,3 @@
-#
-# Ansible managed
-#
 # XDG variables - Needed in case you are using rootless podman
 #
 

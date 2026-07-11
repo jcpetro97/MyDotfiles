@@ -76,8 +76,6 @@ alias glog="git log --graph --abbrev-commit --decorate --format=format:'%C(bold 
 
 #   Networking (BSD lsof lives in /usr/sbin; macOS-only tools)
 #   ------------------------------------------------------------
-alias myip='curl ip.appspot.com'                    # myip:         Public facing IP Address
-alias testip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias flushDNS='dscacheutil -flushcache'            # flushDNS:     Flush out the DNS Cache
 alias lsock='sudo /usr/sbin/lsof -i -P'             # lsock:        Display open sockets
 alias lsockU='sudo /usr/sbin/lsof -nP | grep UDP'   # lsockU:       Display only open UDP sockets

@@ -1,6 +1,3 @@
-#
-# Ansible managed
-#
 
 # aliases for yubikey
 export SSH_ASKPASS=/usr/local/bin/ssh-askpass
