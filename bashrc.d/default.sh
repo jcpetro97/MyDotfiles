@@ -5,7 +5,8 @@
 
 # Forward the ssh agent socket for graphical sessions
 if [[ ${XDG_SESSION_TYPE} != "tty" ]]; then
-   export SSH_AUTH_SOCK=~/ssh.auth
+   : "${SSH_AUTH_SOCK:=$HOME/ssh.auth}"
+   export SSH_AUTH_SOCK
 fi
 
 alias vnstat='vnstat -i eth0'
