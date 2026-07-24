@@ -16,6 +16,7 @@ FILES=(
   "${REPO_DIR}"/bashrc.d/*.sh
   "${REPO_DIR}"/.aliases/bash_aliases_*
   "${REPO_DIR}/dotfiles-setup/dotfiles-setup.sh"
+  "${REPO_DIR}/dotfiles-setup/dotfiles-remove.sh"
 )
 
 rc=0

@@ -94,3 +94,25 @@ The script ensures that the following common files, are linked:
 bash_aliases_user
 bash_aliases_misc
 ```
+
+## 🧹 Tearing It Back Down
+
+If you need to blow away `~/.dotfiles` (e.g. to pull a fresh clone from GitLab)
+and re-run setup, use `dotfiles-remove.sh` first. It walks `$HOME`, removes
+every symlink that points into `~/.dotfiles`, and restores any `*.bak` file
+that setup created along the way — so re-running `dotfiles-setup.sh`
+afterwards starts from a clean slate.
+
+```bash
+./dotfiles-remove.sh            # unlink everything, leave ~/.dotfiles in place
+./dotfiles-remove.sh --purge    # also delete ~/.dotfiles itself (asks to confirm)
+./dotfiles-remove.sh --purge -y # same, but skip the confirmation prompt
+```
+
+Typical full-refresh workflow:
+
+```bash
+./dotfiles-remove.sh --purge
+git clone <gitlab-url> ~/.dotfiles
+~/.dotfiles/dotfiles-setup/dotfiles-setup.sh
+```

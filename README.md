@@ -21,3 +21,5 @@
 Run `./check.sh` to syntax-check every bash file in the repo (can also be linked as a git pre-commit hook — see the comments in the script).
 
 See [dotfiles-setup/README.md](dotfiles-setup/README.md) for the setup script. Everyone gets the same ~/.bashrc; the `-m/--machine` option (default, wsl, or macbook — auto-detected if omitted) controls which bashrc.d overlay gets linked as ~/.bashrc-machine.
+
+To remove all dotfiles symlinks (e.g. before deleting `~/.dotfiles` to pull a fresh clone), run `dotfiles-setup/dotfiles-remove.sh` — see that same README for details.
