@@ -300,11 +300,10 @@ if [[ $EUID -ne 0 ]]; then
         neofetch
     elif command -v neowofetch >/dev/null 2>&1; then
         neowofetch
-    fi
     elif command -v fastfetch >/dev/null 2>&1; then
         fastfetch
     fi
-    
+
 fi
 
 #   8.  REMINDERS & NOTES
