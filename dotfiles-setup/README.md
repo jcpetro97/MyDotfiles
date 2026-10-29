@@ -30,6 +30,12 @@ Description: Comma-separated list of extra dotfiles to link from ~/.dotfiles/ to
 -a, --aliases: <alias1,alias2,...>
 
 Description: Comma-separated list of extra alias files to link from ~/.dotfiles/.aliases/ to ~/.aliases/.
+-m, --machine: <default|wsl|macbook>
+
+Description: Machine type. Links ~/.bashrc-machine to the matching
+bashrc.d/<type>.sh overlay, which the common ~/.bashrc sources at the end.
+On macbook it also links the bash_aliases_user_macos alias file. If omitted,
+the type is auto-detected (macOS -> macbook, WSL -> wsl, otherwise default).
 -h, --help: Displays the usage information.
 ```
 
@@ -57,12 +63,24 @@ C. Full Custom Setup (Files and Aliases)
     --aliases docker_aliases,node_aliases
 ```
 
+D. Setup on WSL or a MacBook
+- Links the machine-specific overlay (bashrc.d/wsl.sh or bashrc.d/macbook.sh) as ~/.bashrc-machine.
+
+```bash
+./dotfiles-setup.sh --machine wsl
+./dotfiles-setup.sh --machine macbook
+```
+
+Note: any pre-existing regular file (e.g. a distro-default ~/.bashrc) is
+backed up to <name>.bak before being replaced with a symlink.
+
 ## Configuration Mapping
 The script ensures that the following common files, are linked:
 
 ### Common Dotfiles
 ```bash
 .bashrc
+.bashrc-machine -> bashrc.d/<machine type>.sh
 .bash_profile
 .gitconfig
 .gitconfig-personal
@@ -75,4 +93,26 @@ The script ensures that the following common files, are linked:
 ```bash
 bash_aliases_user
 bash_aliases_misc
+```
+
+## 🧹 Tearing It Back Down
+
+If you need to blow away `~/.dotfiles` (e.g. to pull a fresh clone from GitLab)
+and re-run setup, use `dotfiles-remove.sh` first. It walks `$HOME`, removes
+every symlink that points into `~/.dotfiles`, and restores any `*.bak` file
+that setup created along the way — so re-running `dotfiles-setup.sh`
+afterwards starts from a clean slate.
+
+```bash
+./dotfiles-remove.sh            # unlink everything, leave ~/.dotfiles in place
+./dotfiles-remove.sh --purge    # also delete ~/.dotfiles itself (asks to confirm)
+./dotfiles-remove.sh --purge -y # same, but skip the confirmation prompt
+```
+
+Typical full-refresh workflow:
+
+```bash
+./dotfiles-remove.sh --purge
+git clone <gitlab-url> ~/.dotfiles
+~/.dotfiles/dotfiles-setup/dotfiles-setup.sh
 ```

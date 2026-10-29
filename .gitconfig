@@ -1,6 +1,3 @@
-#
-# Ansible managed
-#
 
 [includeIf "gitdir:~jpetro/"]
   path = ~/.gitconfig-personal
